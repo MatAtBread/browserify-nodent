@@ -2,9 +2,16 @@ var nodent = require('nodent')();
 var through = require('through');
 //var convert = require('convert-source-map');
 
+function isJavascript (file) {
+    return (/\.js$/).test(file);
+}
+
 module.exports = function (file) {
+    if (!isJavascript(file)) return through();
+
     var data = '';
-    return through(write, end);
+    var stream = through(write, end);
+    return stream;
 
     function write (buf) { data += buf }
     function end () {
@@ -18,8 +25,9 @@ module.exports = function (file) {
               + nodent.compile(data,file,undefined,opts).code ;
         } catch (error) {
             // Nodent couldn't compile this - just pass the source through unmolested
-            console.log(error.stack) ;
-            src = data ;
+            // console.log(error.stack) ;
+            stream.emit('error',error);
+            src = data;
         }
         this.queue(src);
         this.queue(null);
