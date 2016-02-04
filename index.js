@@ -1,6 +1,5 @@
 var nodent = require('nodent')();
 var through = require('through');
-//var convert = require('convert-source-map');
 
 module.exports = function (file) {
     var data = '';
