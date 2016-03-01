@@ -1,13 +1,13 @@
 {
   "name": "browserify-nodent",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "Browserify transform for ES7 async/await keywords",
   "main": "index.js",
   "directories": {
     "example": "example"
   },
   "dependencies": {
-    "nodent": "^2.4.0",
+    "nodent": "^2.4.1",
     "through": "2.3.8"
   },
   "devDependencies": {},
